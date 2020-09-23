@@ -12,7 +12,7 @@ class es_dict(dict):
             elif isinstance(value, list):
                 return es_list(value)
             else:
-                return self[name]
+                return value
 
         else:
             return None
