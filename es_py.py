@@ -35,20 +35,29 @@ class es_list(list):
     def __init__(self, *arg, **kwarg):
         super().__init__(*arg, **kwarg)
 
+    @property
+    def length(self):
+        return len(self)
+        pass
+
     def __getitem__(self, name):
-        if name in self or name == 0:
-            value = super().__getitem__(name)
+        if isinstance(name, int):
+            if name < self.length and name >= - self.length:
+                value = super().__getitem__(name)
 
-            if isinstance(value, dict) and not isinstance(value, es_dict):
-                self[name] = es_dict(value)
-                value = self[name]
-            if isinstance(value, list) and not isinstance(value, es_list):
-                self[name] = es_list(value)
-                value = self[name]
+                if isinstance(value, dict) and not isinstance(value, es_dict):
+                    self[name] = es_dict(value)
+                    value = self[name]
+                if isinstance(value, list) and not isinstance(value, es_list):
+                    self[name] = es_list(value)
+                    value = self[name]
 
-            return value
+                return value
+            else:
+                return None
         else:
-            return None
+            value = super().__getitem__(name)
+            return value
 
     def __setitem__(self, name, value) -> None:
         # print(" __setitem__ ", " self ", self,
