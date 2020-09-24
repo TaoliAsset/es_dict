@@ -9,7 +9,7 @@ class es_dict(dict):
         return super().get(name)
 
     def __setattr__(self, name, value):
-        self[name] = trans_to_es(value)
+        super().__setattr__(name, trans_to_es(value))
 
     def update(self, value):
         super().update(trans_to_es(value))
@@ -20,7 +20,6 @@ class es_list(list):
         super().__init__(*arg, **kwarg)
         for i in range(self.length):
             self[i] = trans_to_es(self[i])
-            pass
 
     @property
     def length(self):
@@ -28,8 +27,7 @@ class es_list(list):
 
     def __getitem__(self, name):
         if name < self.length and name >= - self.length:
-            value = super().__getitem__(name)
-            return value
+            return super().__getitem__(name)
         else:
             return None
 
