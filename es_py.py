@@ -9,7 +9,7 @@ class es_dict(dict):
         return super().get(name)
 
     def __setattr__(self, name, value):
-        super().__setattr__(name, trans_to_es(value))
+        self[name] = trans_to_es(value)
 
     def update(self, value):
         super().update(trans_to_es(value))
