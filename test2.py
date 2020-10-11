@@ -10,5 +10,6 @@ class My(es_dict):
 me = My()
 me.hobby = "hobby"
 
+print(me.hobby)
 print(me.keys())
 print(dir(me))
