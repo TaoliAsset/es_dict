@@ -14,6 +14,15 @@ class es_dict(dict):
     def update(self, value):
         super().update(trans_to_es(value))
 
+    def keys(self):
+        return es_list(super().keys())
+
+    def values(self):
+        return es_list(super().values())
+
+    def items(self):
+        return es_list(super().items())
+
 
 class es_list(list):
     def __init__(self, *arg, **kwarg):
