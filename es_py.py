@@ -34,14 +34,25 @@ class es_list(list):
     def __setitem__(self, name, value) -> None:
         super().__setitem__(name, trans_to_es(value))
 
-    def append(value):
+    def append(self, value):
         super().append(trans_to_es(value))
 
-    def extend(value):
+    def extend(self, value):
         super().extend(trans_to_es(value))
 
-    def insert(index, value):
+    def insert(self, index, value):
         super().insert(index, trans_to_es(value))
+
+    def map(self, fn):
+        return es_list(map(fn))
+
+    def filter(self, fn):
+        return es_list(filter(fn, self))
+
+    def forEach(self, fn):
+        for i in range(self.length):
+            fn(self[i], i, self)
+        return self
 
 
 def trans_to_es(value):
