@@ -66,12 +66,8 @@ class es_list(list):
 
 def trans_to_es(value):
     if isinstance(value, dict) and not isinstance(value, es_dict):
-        for key in value:
-            value[key] = trans_to_es(value[key])
         return es_dict(value)
     elif isinstance(value, list) and not isinstance(value, es_list):
-        for i in range(len(value)):
-            value[i] = trans_to_es(value[i])
         return es_list(value)
     else:
         return value
